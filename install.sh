@@ -38,6 +38,15 @@ sudo make samples
 sudo make config
 sudo ldconfig
 
+# Create Asterisk user and set permissions
+sudo groupadd asterisk
+sudo useradd -r -d /var/lib/asterisk -g asterisk asterisk
+sudo usermod -aG audio,dialout asterisk
+sudo chown -R asterisk:asterisk /etc/asterisk
+sudo chown -R asterisk:asterisk /var/{lib,log,spool}/asterisk
+sudo chown -R asterisk:asterisk /usr/lib/asterisk
+sudo chown -R asterisk:asterisk /var/www/
+
 # Install FreePBX
 cd /usr/src
 sudo git clone https://github.com/FreePBX/freepbx.git
